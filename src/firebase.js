@@ -14,6 +14,7 @@ import "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyDdrN9UShcOi4fJyuKhwg3-zak22YQ1jyg",
   authDomain: "whatsappclone-v1.firebaseapp.com",
+  databaseURL: "https://whatsappclone-v1-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "whatsappclone-v1",
   storageBucket: "whatsappclone-v1.appspot.com",
   messagingSenderId: "703537599649",

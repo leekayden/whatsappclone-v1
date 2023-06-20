@@ -23,7 +23,7 @@ function Login() {
           photoURL: result.user.photoURL,
         });
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   };
 
   return (
