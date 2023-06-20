@@ -76,11 +76,11 @@ function SidebarChat(props) {
             <h2 className="room__name">{name}</h2>
             <p className="sidebar__lastmessages__color">
               <span className="sidebar__lastMessageName">
-                {id != "" && messages.length > 0
+                {id !== "" && messages.length > 0
                   ? messages[0]?.name + ": "
                   : "Loading: "}
               </span>
-              {id != "" && messages.length > 0
+              {id !== "" && messages.length > 0
                 ? messages[0]?.message
                 : "Start a new chat"}
             </p>

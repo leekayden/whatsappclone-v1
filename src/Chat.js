@@ -195,7 +195,7 @@ function Chat() {
           name: message.name,
           timestamp: message.timestamp,
         });
-        if (messageDate != dateArray[index] && i == messages.length - 1) {
+        if (messageDate !== dateArray[index] && i == messages.length - 1) {
           blankObj[messageDate] = blankArray;
           TotalObj.push(blankObj);
         }
@@ -692,7 +692,7 @@ function Chat() {
                       i == 0 ? (
                         <>
                           {String(Object.keys(item))?.slice(0, 2) !== "id" &&
-                          Object.keys(item) != undefined ? (
+                          Object.keys(item) !== undefined ? (
                             <div className="chat__body__daystamp">
                               <p className="chat__body__daystamp__title">
                                 {parseInt(
