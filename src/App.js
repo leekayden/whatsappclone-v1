@@ -28,7 +28,7 @@ function App() {
                 <Chat />
               </Route>
               <Route path="/">
-                <Chat />
+                <div>Select a chat to start messaging</div>
               </Route>
             </Switch>
           </Router>
