@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Collapse, IconButton } from "@material-ui/core";
-import DonutLargeIcon from "@material-ui/icons/DonutLarge";
-import ChatIcon from "@material-ui/icons/Chat";
-import SearchOutlined from "@material-ui/icons/SearchOutlined";
+import { Avatar, Collapse, IconButton } from "@mui/material";
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import ChatIcon from "@mui/icons-material/Chat";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import SidebarChat from "./SidebarChat";
 import "./Sidebar.css";
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 import db from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import UseWindowDimensions from "./UseWindowDimensions";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Loader from "./Loader";
 
 function Sidebar() {
@@ -98,15 +98,6 @@ function Sidebar() {
             </IconButton>
             <div className="sidebar__header">
               <Avatar src={photoURL} />{" "}
-              <p className="sidebar__greeting mobile__tag">
-                {" "}
-                <a
-                  href="https://alii13.github.io/portfolio/"
-                  style={{ color: "white" }}
-                >
-                  Made with ♥ by <span style={{ color: "white" }}>Kayden</span>
-                </a>
-              </p>
               <div className="sidebar__headerRight">
                 <IconButton>
                   <DonutLargeIcon />
@@ -153,12 +144,6 @@ function Sidebar() {
         <div className={"sidebar"}>
           <div className="sidebar__header">
             <Avatar src={photoURL} />{" "}
-            <p className="sidebar__greeting">
-              {" "}
-              <a href="https://alii13.github.io/portfolio/">
-                Made with ♥ by <span style={{ color: "blue" }}>Kayden</span>
-              </a>
-            </p>
             <div className="sidebar__headerRight">
               <IconButton>
                 <DonutLargeIcon />

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Avatar, IconButton } from "@material-ui/core";
-import AttachFile from "@material-ui/icons/AttachFile";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import SearchOutlined from "@material-ui/icons/SearchOutlined";
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import MicIcon from "@material-ui/icons/Mic";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { Avatar, IconButton } from "@mui/material";
+import AttachFile from "@mui/icons-material/AttachFile";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
+import MicIcon from "@mui/icons-material/Mic";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import db from "./firebase";
 import firebase from "firebase";
 import "./Chat.css";
@@ -163,7 +163,7 @@ function Chat() {
         new Date(message.timestamp?.toDate()).toUTCString()
       ).slice(5, 12);
       // console.log((message.timestamp+new Date()?.getTimezoneOffset()))
-      if (messageDate === dateArray[index] && i == messages.length - 1) {
+      if (messageDate === dateArray[index] && i === messages.length - 1) {
         blankArray.push({
           messageData: message.message,
           name: message.name,
@@ -296,7 +296,7 @@ function Chat() {
             <div className="chat__headerInfo">
               <h3>{roomName}</h3>
               <p className="header__lastSeen">
-                last seen{" "}
+                last seen at {" "}
                 {messages.length !== 0
                   ? String(
                       messages[messages.length - 1].timestamp
