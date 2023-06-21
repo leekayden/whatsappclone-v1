@@ -14,7 +14,7 @@ import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import UseWindowDimensions from "./UseWindowDimensions";
 import useSound from "use-sound";
-import "emoji-mart/css/emoji-mart.css";
+// import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import Linkify from "react-linkify";
 
