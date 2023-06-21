@@ -179,7 +179,7 @@ function Chat() {
           timestamp: message.timestamp,
         });
         index = index + 1;
-      } else if (messageDate == dateArray[index]) {
+      } else if (messageDate === dateArray[index]) {
         blankArray.push({
           messageData: message.message,
           name: message.name,
@@ -195,7 +195,7 @@ function Chat() {
           name: message.name,
           timestamp: message.timestamp,
         });
-        if (messageDate !== dateArray[index] && i == messages.length - 1) {
+        if (messageDate !== dateArray[index] && i === messages.length - 1) {
           blankObj[messageDate] = blankArray;
           TotalObj.push(blankObj);
         }
@@ -326,7 +326,7 @@ function Chat() {
                     //     <p className="chat__body__daystamp__title">{Object.keys(item)}</p>
                     //  </div>
                     item[Object.keys(item)].map((e, i) =>
-                      i == 0 ? (
+                      i === 0 ? (
                         <>
                           {String(Object.keys(item)).slice(0, 2) !== "id" &&
                           parseInt(String(Object.keys(item)).slice(0, 2)) ? (
@@ -334,7 +334,7 @@ function Chat() {
                               <p className="chat__body__daystamp__title">
                                 {parseInt(
                                   String(Object.keys(item)).slice(0, 2)
-                                ) == parseInt(String(new Date().getDate()))
+                                ) === parseInt(String(new Date().getDate()))
                                   ? "TODAY"
                                   : Object.keys(item)}
                               </p>
@@ -616,7 +616,7 @@ function Chat() {
                 onClick={checkEmojiClose}
                 disabled={
                   roomName === "Admin: Ali"
-                    ? (displayName == "Shekh Aliul WqnNsFNEPr" ? true : false)
+                    ? (displayName === "Shekh Aliul WqnNsFNEPr" ? true : false)
                       ? false
                       : true
                     : false
@@ -641,7 +641,7 @@ function Chat() {
                 type="text"
                 placeholder="Type a message"
                 onChange={(e) => setInput(e.target.value)}
-                disabled={roomName == "Admin: Ali" ? true : false}
+                disabled={roomName === "Admin: Ali" ? true : false}
               />
               <button type="submit" onClick={sendMessage}>
                 Send A message
@@ -689,7 +689,7 @@ function Chat() {
               ? datewise.map(
                   (item, i) =>
                     item[Object.keys(item)].map((e, i) =>
-                      i == 0 ? (
+                      i === 0 ? (
                         <>
                           {String(Object.keys(item))?.slice(0, 2) !== "id" &&
                           Object.keys(item) !== undefined ? (
@@ -697,7 +697,7 @@ function Chat() {
                               <p className="chat__body__daystamp__title">
                                 {parseInt(
                                   String(Object.keys(item)).slice(0, 2)
-                                ) == parseInt(String(new Date().getDate()))
+                                ) === parseInt(String(new Date().getDate()))
                                   ? "TODAY"
                                   : Object.keys(item)}
                               </p>
@@ -983,7 +983,7 @@ function Chat() {
                 onClick={checkEmojiClose}
                 disabled={
                   roomName === "Admin: Ali"
-                    ? (displayName == "Shekh Aliul WqnNsFNEPr" ? true : false)
+                    ? (displayName === "Shekh Aliul WqnNsFNEPr" ? true : false)
                       ? false
                       : true
                     : false

@@ -7,11 +7,19 @@ import SidebarChat from "./SidebarChat";
 import "./Sidebar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import db from "./firebase";
+import firebase from "firebase";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import UseWindowDimensions from "./UseWindowDimensions";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Loader from "./Loader";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 function Sidebar() {
   const [rooms, setRooms] = useState([]);
@@ -22,6 +30,28 @@ function Sidebar() {
   const [input, setInput] = useState("");
   const [logout, setLogout] = useState(false);
   const { width } = UseWindowDimensions();
+  const [seed, setSeed] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [roomN, setRoomN] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    setOpen(false);
+    db.collection("rooms").add({
+      name: roomN,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  };
+
+  // const { addNewChatVal, name, id } = props;
+  const [messages, setMessages] = useState([]);
   const matcher = (s, values) => {
     const re = RegExp(`.*${s.toLowerCase().split("").join(".*")}.*`);
     return values.filter((v) => v.data.name.toLowerCase().match(re));
@@ -78,6 +108,23 @@ function Sidebar() {
       : null;
   const displayName = localStorage.getItem("displayName");
 
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 5000));
+  }, []);
+
+  const createChat = () => {
+    const roomName = roomN;
+    if (roomName && roomName.length >= 20) {
+      return alert("enter a shorter name for the room");
+    }
+    if (roomName) {
+      db.collection("rooms").add({
+        name: roomName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+  };
+
   return (
     <>
       {width < 629 ? (
@@ -103,7 +150,9 @@ function Sidebar() {
                   <DonutLargeIcon />
                 </IconButton>
                 <IconButton>
-                  <ChatIcon />
+                  <div onClick={createChat}>
+                    <ChatIcon />
+                  </div>
                 </IconButton>
                 <IconButton>
                   <div onClick={exitApp}>
@@ -148,13 +197,11 @@ function Sidebar() {
               <IconButton>
                 <DonutLargeIcon />
               </IconButton>
-              <IconButton>
+              <IconButton onClick={handleClickOpen}>
                 <ChatIcon />
               </IconButton>
-              <IconButton>
-                <div onClick={exitApp}>
-                  <ExitToAppIcon />
-                </div>
+              <IconButton onClick={exitApp}>
+                <ExitToAppIcon />
               </IconButton>
             </div>
           </div>
@@ -172,7 +219,7 @@ function Sidebar() {
           {sidebarBool ? (
             <div className="sidebar__chats scrollbar-juicy-peach">
               <SidebarChat addNewChatVal="true" />
-              {rooms.length == 0 ? (
+              {rooms.length === 0 ? (
                 <Loader />
               ) : (
                 rooms.map((room) => (
@@ -194,6 +241,29 @@ function Sidebar() {
           )}
         </div>
       )}
+      <Dialog open={open}>
+        <DialogTitle>Room Name</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Enter a name for your room
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Room Name"
+            type="name"
+            fullWidth
+            variant="standard"
+            value={roomN}
+            onChange={(e) => setRoomN(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit} disabled={roomN === ''}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

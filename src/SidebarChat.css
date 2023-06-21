@@ -5,6 +5,12 @@
     border-bottom: 1px solid rgb(211, 202, 202);
 }
 
+.sidebarChat .deleteBtn {
+    border-radius: 50% ;
+    width: 40px;
+    height: 40px;
+}
+
 .sidebarChat:hover {
     background-color: #0fb45c;
     color: white;

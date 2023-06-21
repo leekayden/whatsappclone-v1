@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import "./SidebarChat.css";
 import db from "./firebase";
-import { Link } from "react-router-dom";
+import { Link } from "@mui/material";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import firebase from "firebase";
 import { password } from "./constants";
+
 function SidebarChat(props) {
   const [seed, setSeed] = useState("");
   const { addNewChatVal, name, id } = props;
@@ -32,7 +33,7 @@ function SidebarChat(props) {
   }, []);
   const deleteRoom = () => {
     const passwordVerify = prompt("Enter Admin Password to delete Room");
-    if (passwordVerify == password) {
+    if (passwordVerify === password) {
       db.collection("rooms")
         .doc(id)
         .delete()
@@ -69,7 +70,7 @@ function SidebarChat(props) {
 
   return addNewChatVal !== "true" ? (
     <div className="sidebarChat">
-      <Link to={`/rooms/${id}`} onClick={handleChat}>
+      <Link href={`/rooms/${id}`} onClick={handleChat}>
         <div className="sidebarChat__wrapper">
           <Avatar src={messages[0]?.photoURL} />
           <div className="sidebarChat__info">
@@ -78,18 +79,18 @@ function SidebarChat(props) {
               <span className="sidebar__lastMessageName">
                 {id !== "" && messages.length > 0
                   ? messages[0]?.name + ": "
-                  : "Loading: "}
+                  : null}
               </span>
               {id !== "" && messages.length > 0
                 ? messages[0]?.message
-                : "Start a new chat"}
+                : "%s created a group \"%s\""}
             </p>
           </div>
         </div>
       </Link>
-      <div className="sidebarChat__delete" onClick={deleteRoom}>
+      <IconButton className="deleteBtn" onClick={deleteRoom}>
         <DeleteForeverIcon />
-      </div>
+      </IconButton>
     </div>
   ) : (
     <div onClick={createChat} className="sidebarChat addnew__chat">
