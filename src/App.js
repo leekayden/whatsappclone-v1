@@ -28,17 +28,14 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.code === "ControlLeft") {
-      // const iframe = document.createElement('iframe');
-      // iframe.src = 'https://example.com/';
-      // iframe.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;';
-      // document.body.innerHTML = '';
-      // document.body.appendChild(iframe);
-      window.location.replace('https://classroom.google.com/');
+      window.location.replace("https://classroom.google.com/");
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    if (process.env.REACT_APP_ENV !== "dev") {
+      window.addEventListener("keydown", handleKeyDown);
+    }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);

@@ -112,6 +112,7 @@ function Chat() {
         .add({
           message: input,
           name: displayName,
+          uid: localStorage.getItem('uid'),
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           photoURL: localStorage.getItem("photoURL"),
         });

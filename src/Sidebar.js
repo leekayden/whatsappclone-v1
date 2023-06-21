@@ -3,6 +3,7 @@ import { Avatar, Collapse, IconButton } from "@mui/material";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import ChatIcon from "@mui/icons-material/Chat";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
+import SettingsIcon from '@mui/icons-material/Settings';
 import SidebarChat from "./SidebarChat";
 import "./Sidebar.css";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -118,8 +119,10 @@ function Sidebar() {
       return alert("enter a shorter name for the room");
     }
     if (roomName) {
+      console.log(localStorage.getItem('uid'))
       db.collection("rooms").add({
         name: roomName,
+        uid: localStorage.getItem('uid'),
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
@@ -195,7 +198,7 @@ function Sidebar() {
             <Avatar src={photoURL} />{" "}
             <div className="sidebar__headerRight">
               <IconButton>
-                <DonutLargeIcon />
+                <SettingsIcon />
               </IconButton>
               <IconButton onClick={handleClickOpen}>
                 <ChatIcon />
