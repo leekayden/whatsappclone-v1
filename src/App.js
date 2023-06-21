@@ -28,11 +28,12 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.code === "ControlLeft") {
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://classroom.google.com/';
-      iframe.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;';
-      document.body.innerHTML = '';
-      document.body.appendChild(iframe);
+      // const iframe = document.createElement('iframe');
+      // iframe.src = 'https://example.com/';
+      // iframe.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none;';
+      // document.body.innerHTML = '';
+      // document.body.appendChild(iframe);
+      window.location.replace('https://classroom.google.com/');
     }
   };
 

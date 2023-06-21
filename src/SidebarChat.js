@@ -93,10 +93,11 @@ function SidebarChat(props) {
       </IconButton>
     </div>
   ) : (
-    <div onClick={createChat} className="sidebarChat addnew__chat">
-      <h2>Add New Room</h2>
-      <AddCircleIcon />
-    </div>
+    // <div onClick={createChat} className="sidebarChat addnew__chat">
+    //   <h2>Add New Room</h2>
+    //   <AddCircleIcon />
+    // </div>
+    null
   );
 }
 
