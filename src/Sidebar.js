@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, Collapse, IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import ChatIcon from "@mui/icons-material/Chat";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
-import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsIcon from "@mui/icons-material/Settings";
 import SidebarChat from "./SidebarChat";
 import "./Sidebar.css";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -51,8 +51,6 @@ function Sidebar() {
     });
   };
 
-  // const { addNewChatVal, name, id } = props;
-  const [messages, setMessages] = useState([]);
   const matcher = (s, values) => {
     const re = RegExp(`.*${s.toLowerCase().split("").join(".*")}.*`);
     return values.filter((v) => v.data.name.toLowerCase().match(re));
@@ -94,7 +92,7 @@ function Sidebar() {
 
   useEffect(() => {
     setToggler(!toggler);
-  }, [togglerState]);
+  }, [toggler, togglerState]);
   const handleDrawerToggle = () => {
     setToggler(toggler);
 
@@ -119,10 +117,10 @@ function Sidebar() {
       return alert("enter a shorter name for the room");
     }
     if (roomName) {
-      console.log(localStorage.getItem('uid'))
+      console.log(localStorage.getItem("uid"));
       db.collection("rooms").add({
         name: roomName,
-        uid: localStorage.getItem('uid'),
+        uid: localStorage.getItem("uid"),
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
@@ -247,9 +245,7 @@ function Sidebar() {
       <Dialog open={open}>
         <DialogTitle>Room Name</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Enter a name for your room
-          </DialogContentText>
+          <DialogContentText>Enter a name for your room</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -264,7 +260,9 @@ function Sidebar() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit} disabled={roomN === ''}>Subscribe</Button>
+          <Button onClick={handleSubmit} disabled={roomN === ""}>
+            Subscribe
+          </Button>
         </DialogActions>
       </Dialog>
     </>

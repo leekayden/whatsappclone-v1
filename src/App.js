@@ -28,14 +28,17 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.code === "ControlLeft") {
-      window.location.replace("https://classroom.google.com/");
+      // window.history.replaceState(null, document.title, "https://classroom.google.com/")
+      window.location.replace(localStorage.getItem('redirect') || "https://classroom.google.com")
+    }
+    if (event.code === "Escape") {
+      // window.history.replaceState(null, document.title, "/")
+      window.location.replace('');
     }
   };
 
   useEffect(() => {
-    if (process.env.REACT_APP_ENV !== "dev") {
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);

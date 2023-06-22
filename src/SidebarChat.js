@@ -12,7 +12,7 @@ import { password } from "./constants";
 
 function SidebarChat(props) {
   const [seed, setSeed] = useState("");
-  const { addNewChatVal, name, id } = props;
+  const { name, id } = props;
   const [messages, setMessages] = useState([]);
   const [{ togglerState }, dispatch] = useStateValue();
 
@@ -48,19 +48,6 @@ function SidebarChat(props) {
     }
   };
 
-  const createChat = () => {
-    const roomName = prompt("Please enter name for chat");
-    if (roomName && roomName.length >= 20) {
-      return alert("enter a shorter name for the room");
-    }
-    if (roomName) {
-      db.collection("rooms").add({
-        name: roomName,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-    }
-  };
-
   const handleChat = () => {
     dispatch({
       type: actionTypes.SET_TOGGLER,
@@ -68,7 +55,7 @@ function SidebarChat(props) {
     });
   };
 
-  return addNewChatVal !== "true" ? (
+  return (
     <div className="sidebarChat">
       <Link href={`/rooms/${id}`} onClick={handleChat}>
         <div className="sidebarChat__wrapper">
@@ -83,7 +70,7 @@ function SidebarChat(props) {
               </span>
               {id !== "" && messages.length > 0
                 ? messages[0]?.message
-                : "%s created a group \"%s\""}
+                : `${messages[0]?.name}`}
             </p>
           </div>
         </div>
@@ -92,12 +79,6 @@ function SidebarChat(props) {
         <DeleteForeverIcon />
       </IconButton>
     </div>
-  ) : (
-    // <div onClick={createChat} className="sidebarChat addnew__chat">
-    //   <h2>Add New Room</h2>
-    //   <AddCircleIcon />
-    // </div>
-    null
   );
 }
 
