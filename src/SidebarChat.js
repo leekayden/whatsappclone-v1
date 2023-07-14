@@ -5,9 +5,7 @@ import db from "./firebase";
 import { Link } from "@mui/material";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import firebase from "firebase";
 import { password } from "./constants";
 
 function SidebarChat(props) {

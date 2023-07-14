@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import { useStateValue } from "./StateProvider";
-import UseWindowDimensions from "./UseWindowDimensions";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +18,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [{ user }, dispatch] = useStateValue();
-  const { width } = UseWindowDimensions();
+  const [{ user }] = useStateValue();
+
   const uid =
     localStorage.getItem("uid") !== undefined
       ? localStorage.getItem("uid")
@@ -28,11 +27,9 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.code === "ControlLeft") {
-      // window.history.replaceState(null, document.title, "https://classroom.google.com/")
       window.location.replace(localStorage.getItem('redirect') || "https://classroom.google.com")
     }
     if (event.code === "Escape") {
-      // window.history.replaceState(null, document.title, "/")
       window.location.replace('');
     }
   };

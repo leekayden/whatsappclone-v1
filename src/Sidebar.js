@@ -71,7 +71,7 @@ function Sidebar() {
     if (input === "") {
       setsidebarBool(true);
     }
-  }, [input]);
+  }, [input, rooms]);
 
   useEffect(() => {
     const unsubscribe = db
@@ -105,7 +105,6 @@ function Sidebar() {
     localStorage.getItem("photoURL") !== ""
       ? localStorage.getItem("photoURL")
       : null;
-  const displayName = localStorage.getItem("displayName");
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
@@ -117,7 +116,6 @@ function Sidebar() {
       return alert("enter a shorter name for the room");
     }
     if (roomName) {
-      console.log(localStorage.getItem("uid"));
       db.collection("rooms").add({
         name: roomName,
         uid: localStorage.getItem("uid"),
@@ -261,7 +259,7 @@ function Sidebar() {
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleSubmit} disabled={roomN === ""}>
-            Subscribe
+            Create
           </Button>
         </DialogActions>
       </Dialog>
